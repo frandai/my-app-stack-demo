@@ -4,7 +4,7 @@ metadata:
   name: my-app-stack-demo
 spec:
   applicationImage: my-app-stack-demo
-  stack: my-nodejs-express
+  stack: nodejs-express
   service:
     type: NodePort
     port: 3000
