@@ -1,0 +1,28 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  name: my-app-stack-demo
+spec:
+  applicationImage: my-app-stack-demo
+  stack: my-nodejs-express
+  service:
+    type: NodePort
+    port: 3000
+    annotations:
+      prometheus.io/scrape: "true"
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /ready
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+    timeoutSeconds: 1
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /live
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+  expose: true
